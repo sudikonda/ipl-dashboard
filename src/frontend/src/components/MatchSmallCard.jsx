@@ -1,11 +1,18 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
-export const MatchSmallCard = (props) => {
+export const MatchSmallCard = ({teamName, match}) => {
 
-    const { match } = props;
+    if (!match) {
+        return null;
+    }
+
+    const otherTeam = match.team1 === teamName ? match.team2 : match.team1;
+
     return (
         <div className="MatchSmallCard">
-            <p>{match["date"]} - {match["team1"]} vs {match["team2"]}</p>
+            <p>vs <Link to={`/teams/${otherTeam}`}>{otherTeam}</Link></p>
+            <h3>{match["matchWinner"]} won by {match["resultMargin"]} {match["result"]}</h3>
         </div>
     );
 };
