@@ -27,7 +27,7 @@ const MatchPage = () => {
             <div>
                 <h1 className="page-heading">{teamName} matches in {year}</h1>
                 {matches.map((match) => (
-                    <MatchDetailCard teamName={teamName} match={match}/>
+                    <MatchDetailCard key={match.id} teamName={teamName} match={match}/>
                 ))}
             </div>
         </div>

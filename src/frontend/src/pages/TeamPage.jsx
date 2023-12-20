@@ -51,8 +51,8 @@ export const TeamPage = () => {
                     {(teamData.matches && teamData.matches.length > 0) &&
                         teamData.matches?.slice(1).map(match => <MatchSmallCard key={match.id} teamName={teamName}
                                                                                 match={match}/>)}
-                    <div className="more-link"><a href="#"><Link to={`/teams/${teamName}/matches/${endYear}`}>More
-                        ></Link></a></div>
+                    <div className="more-link"><Link to={`/teams/${teamName}/matches/${endYear}`}>More
+                        ></Link></div>
                 </>
             }
         </div>
