@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import { MatchDetailCard } from "../components/MatchDetailCard";
 import { MatchSmallCard } from "../components/MatchSmallCard";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./TeamPage.scss";
 
 /**
@@ -14,6 +14,7 @@ export const TeamPage = () => {
 
     const {teamName} = useParams();
     const [teamData, setTeamData] = useState({});
+    const endYear = process.env.REACT_APP_DATA_END_YEAR;
 
     useEffect(() => {
         fetch(`http://localhost:8080/team/${teamName}`)
@@ -31,7 +32,7 @@ export const TeamPage = () => {
                         <PieChart
                             animate={true}
                             label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
-                            labelStyle={{ fontSize: '5px', fill: '#fff' }}
+                            labelStyle={{ fontSize: '10px', fill: '#fff' }}
                             data={[
                                 { title: 'Wins', value: teamData["totalWins"], color: '#f4a261' , key: 'wins'},
                                 { title: 'Losses', value: teamData["totalMatches"] - teamData["totalWins"], color: '#e76f51', key: 'losses' },
@@ -42,7 +43,7 @@ export const TeamPage = () => {
                     {(teamData.matches && teamData.matches.length > 0) &&
                         teamData.matches?.slice(1).map(match => <MatchSmallCard key={match.id} teamName={teamName}
                                                                        match={match}/>)}
-                    <div className="more-link"><a href="#">More ></a> </div>
+                    <div className="more-link"><a href="#"><Link to={`/teams/${teamName}/matches/${endYear}`}>More ></Link></a> </div>
                 </>
             }
         </div>
