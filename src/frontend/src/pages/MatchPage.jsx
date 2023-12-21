@@ -10,7 +10,7 @@ const MatchPage = () => {
     const {teamName, year} = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:8080/team/${teamName}/matches/${year}`)
+        fetch(`${process.env.REACT_APP_API_ROOT_URL}/team/${teamName}/matches/${year}`)
             .then((response) => response.json())
             .then((data) => setMatches(data.matches));
     }, [teamName, year]);

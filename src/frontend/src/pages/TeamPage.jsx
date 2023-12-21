@@ -17,7 +17,7 @@ export const TeamPage = () => {
     const endYear = process.env.REACT_APP_DATA_END_YEAR;
 
     useEffect(() => {
-        fetch(`http://localhost:8080/team/${teamName}`)
+        fetch(`${process.env.REACT_APP_API_ROOT_URL}/team/${teamName}`)
             .then((response) => response.json())
             .then((data) => setTeamData(data));
     }, [teamName]);

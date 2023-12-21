@@ -8,7 +8,7 @@ const HomePage = () => {
     const [teams, setTeams] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/teams")
+        fetch(`${process.env.REACT_APP_API_ROOT_URL}/teams`)
             .then((response) => response.json())
             .then((data) => setTeams(data));
     }, []);
